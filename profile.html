@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile | EduPlatform</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f5f7fa;
+    }
+    .navbar {
+        background-color: #212529;
+        padding: 1rem 2rem;
+
+    }
+    
+    .navbar-brand, .nav-link {
+      color: white !important;
+    }
+    .profile-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .profile-header {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+    .card {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
+
+.card-body {
+  font-size: 1rem;
+}
+
+.text-muted {
+  font-size: 0.95rem;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .card-body .row {
+    flex-direction: column;
+  }
+
+  .card-body .col-md-3,
+  .card-body .col-md-9 {
+    width: 100%;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">EduPlatform</a>
+        <div class="ms-auto">
+          <a class="nav-link d-inline" href="dashboard.html">Dashboard</a>
+          <a class="nav-link d-inline" href="profile.html">Profile</a>
+          <a class="nav-link d-inline" href="login.html">Logout</a>
+        </div>
+      </div>
+    </nav>
+    
+
+  <!-- Profile Content -->
+  <div class="container mt-5">
+    <div class="profile-card">
+      <div class="profile-header">
+        <h3>My Profile</h3>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Personal Details</h5>
+          <form>
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullName" value="Sunkara Gowtham Sai" />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" value="gowtham912sunkara@vitstudent.ac.in" />
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" id="phone" value="8688969323" />
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-6">
+          <h5>Courses Enrolled</h5>
+          <ul class="list-group">
+            <li class="list-group-item">✅ Mathematics Basics</li>
+            <li class="list-group-item">✅ Science Essentials</li>
+            <li class="list-group-item">✅ Introduction to Computers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-end mt-4">
+        <button class="btn btn-success">Save Changes</button>
+      </div>
+      <div class="container mt-4">
+        <h2 class="mb-4 text-primary fw-bold">👤 Profile Information</h2>
+        <div class="card shadow-sm border-0 rounded-4" style="background-color: #fff;">
+          <div class="card-body px-4 py-3">
+            <div class="row mb-4">
+              <div class="col-md-3 text-muted fw-semibold">Country</div>
+              <div class="col-md-9">-India</div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-3 text-muted fw-semibold">City/Town</div>
+              <div class="col-md-9">-Vellore</div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-3 text-muted fw-semibold">Timezone</div>
+              <div class="col-md-9">-Asia/Kolkata</div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 text-muted fw-semibold">Designation</div>
+              <div class="col-md-9">-Student</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+        
+        
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+    
+    <round name="General Science">
+        <question>
+            <text>1.What is the chemical symbol for water?</text>
+            <option>O2</option>
+            <option>H2O</option>
+            <option>CO2</option>
+            <option>NaCl</option>
+            <answer>H2O</answer>
+        </question>
+        <question>
+            <text>2.Which planet is known as the Red Planet?</text>
+            <option>Earth</option>
+            <option>Mars</option>
+            <option>Jupiter</option>
+            <option>Venus</option>
+            <answer>Mars</answer>
+        </question>
+        <question>
+            <text>3.What gas do plants absorb from the atmosphere?</text>
+            <option>Oxygen</option>
+            <option>Nitrogen</option>
+            <option>Carbon Dioxide</option>
+            <option>Hydrogen</option>
+            <answer>Carbon Dioxide</answer>
+        </question>
+        <question>
+            <text>4.What is the powerhouse of the cell?</text>
+            <option>Nucleus</option>
+            <option>Mitochondria</option>
+            <option>Ribosome</option>
+            <option>Endoplasmic Reticulum</option>
+            <answer>Mitochondria</answer>
+        </question>
+        
+    </round>
+
+    
+    <round name="General Knowledge">
+        <question>
+            <text>1.Who was the first Prime Minister of India?</text>
+            <option>Indira Gandhi</option>
+            <option>Narendra Modi</option>
+            <option>Jawaharlal Nehru</option>
+            <option>Dr. Rajendra Prasad</option>
+            <answer>Jawaharlal Nehru</answer>
+        </question>
+        <question>
+            <text>2.Which is the largest ocean in the world?</text>
+            <option>Atlantic Ocean</option>
+            <option>Indian Ocean</option>
+            <option>Arctic Ocean</option>
+            <option>Pacific Ocean</option>
+            <answer>Pacific Ocean</answer>
+        </question>
+        <question>
+            <text>3.What is the capital of France?</text>
+            <option>Rome</option>
+            <option>Paris</option>
+            <option>Berlin</option>
+            <option>Madrid</option>
+            <answer>Paris</answer>
+        </question>
+        <question>
+            <text>4.Who wrote the national anthem of India?</text>
+            <option>Rabindranath Tagore</option>
+            <option>Bankim Chandra Chatterjee</option>
+            <option>Mahatma Gandhi</option>
+            <option>Subhas Chandra Bose</option>
+            <answer>Rabindranath Tagore</answer>
+        </question>
+        <question>
+            <text>5.What currency is used in Japan?</text>
+            <option>Dollar</option>
+            <option>Rupee</option>
+            <option>Euro</option>
+            <option>Yen</option>
+            <answer>Yen</answer>
+        </question>
+    </round>
+
+    
+    <round name="Logo Identification">
+        <question>
+            <text>1.Which company's logo features a partially eaten apple?</text>
+            <option>Microsoft</option>
+            <option>Apple</option>
+            <option>Samsung</option>
+            <option>Google</option>
+            <answer>Apple</answer>
+        </question>
+        <question>
+            <text>2.Which automobile company has a prancing horse in its logo?</text>
+            <option>Ferrari</option>
+            <option>Lamborghini</option>
+            <option>Bugatti</option>
+            <option>McLaren</option>
+            <answer>Ferrari</answer>
+        </question>
+        <question>
+            <text>3.Which fast-food chain has a clown mascot named Ronald?</text>
+            <option>Burger King</option>
+            <option>KFC</option>
+            <option>McDonald's</option>
+            <option>Subway</option>
+            <answer>McDonald's</answer>
+        </question>
+        <question>
+            <text>4.Which tech company's logo is a blue bird?</text>
+            <option>Facebook</option>
+            <option>Twitter</option>
+            <option>LinkedIn</option>
+            <option>Instagram</option>
+            <answer>Twitter</answer>
+        </question>
+        <question>
+            <text>5.Which brand uses a swoosh logo?</text>
+            <option>Adidas</option>
+            <option>Nike</option>
+            <option>Puma</option>
+            <option>Reebok</option>
+            <answer>Nike</answer>
+        </question>
+    </round>
+
+</quiz>

@@ -1,0 +1,42 @@
+body {
+    background-color: #f8f9fa;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+  
+  h2, h4 {
+    font-weight: 600;
+  }
+  
+  .list-group-item a {
+    text-decoration: none;
+  }
+  
+.comment-box {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.comment-box h6 {
+    margin: 0;
+    font-weight: bold;
+}
+.comment-box p {
+    margin: 5px 0 0;
+}
+.card {
+     border-radius: 12px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+     transition: transform 0.2s ease;
+     margin-left: 120px;
+     margin-right: 120px;
+}
+    
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+    

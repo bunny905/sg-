@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT Entrance Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            background-color: hsl(192, 17%, 94%);
+            font-family: 'Arial', sans-serif;
+        }
+        .sidebar {
+            width: 250px;
+            background: #007bff;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            text-align: center;
+        }
+        .main-content {
+            margin-left: 270px;
+            width: calc(100% - 270px);
+            padding: 20px;
+        }
+        .navbar {
+            background: #343a40;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .selected {
+            background-color: #007bff !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3>Quiz Progress</h3>
+        <p id="round-indicator">Round: Not Started</p>
+    </div>
+    
+    <div class="main-content">
+        <div class="navbar">
+            <h2>Test Quiz</h2>
+            <p id="timer">Time Left: 0m 0s</p>
+        </div>
+        
+        <div class="container text-center mt-4">
+            <div id="login-section">
+                <input type="email" id="email" placeholder="Enter VIT Email" class="form-control">
+                <button onclick="validateEmail()" class="btn btn-primary mt-2">Start Quiz</button>
+            </div>
+            
+            <div id="quiz-section" class="quiz-container d-none">
+                <h3 id="round-name"></h3>
+                <h4 id="question"></h4>
+                <div id="options"></div>
+                <button onclick="nextQuestion()" id="next-btn" class="btn btn-success mt-3" disabled>Next</button>
+            </div>
+            
+            <div id="result-section" class="quiz-container d-none">
+                <h3>Quiz Completed!</h3>
+                <p id="final-score"></p>
+                <p id="selection-result"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentRound = 0;
+        let currentQuestion = 0;
+        let rawScore = 0;
+        let finalScore = 0;
+        let timeLeft;
+        let timer;
+        let rounds = [
+            { name: "General Science", duration: 15 * 60, totalMarks: 20 }
+            
+        ];
+        let questions = [];
+
+        function loadQuestions() {
+            fetch('questions.xml')
+                .then(response => response.text())
+                .then(data => {
+                    let parser = new DOMParser();
+                    let xml = parser.parseFromString(data, "text/xml");
+                    let xmlRounds = xml.getElementsByTagName("round");
+                    
+                    for (let r of xmlRounds) {
+                        let qList = [];
+                        let xmlQuestions = r.getElementsByTagName("question");
+                        
+                        for (let q of xmlQuestions) {
+                            let questionText = q.getElementsByTagName("text")[0].textContent;
+                            let options = Array.from(q.getElementsByTagName("option")).map(opt => opt.textContent);
+                            let answer = q.getElementsByTagName("answer")[0].textContent;
+                            qList.push({ q: questionText, options, answer });
+                        }
+                        questions.push(qList);
+                    }
+                    startRound();
+                });
+        }
+
+        function validateEmail() {
+            const email = document.getElementById("email").value;
+            if (email.endsWith("@vitstudent.ac.in")) {
+                document.getElementById("login-section").classList.add("d-none");
+                document.getElementById("quiz-section").classList.remove("d-none");
+                loadQuestions();
+            } else {
+                alert("Please use a valid VIT email.");
+            }
+        }
+
+        function updateRoundIndicator() {
+            document.getElementById("round-indicator").innerText = `Round: ${rounds[currentRound].name}`;
+        }
+
+        function startRound() {
+            if (currentRound >= rounds.length) {
+                showResults();
+                return;
+            }
+            currentQuestion = 0;
+            updateRoundIndicator();
+            document.getElementById("round-name").innerText = `Round: ${rounds[currentRound].name}`;
+            startTimer(rounds[currentRound].duration);
+            showQuestion();
+        }
+
+        function startTimer(duration) {
+            clearInterval(timer);
+            timeLeft = duration;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").innerText = `Time Left: ${Math.floor(timeLeft / 60)}m ${timeLeft % 60}s`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    nextRound();
+                }
+            }, 1000);
+        }
+
+        function showQuestion() {
+            if (currentQuestion >= questions[currentRound].length) {
+                nextRound();
+                return;
+            }
+            const q = questions[currentRound][currentQuestion];
+            document.getElementById("question").innerText = q.q;
+            document.getElementById("options").innerHTML = q.options.map(option => `<button class='btn btn-light d-block mt-2' onclick='checkAnswer(this, "${option}")'>${option}</button>`).join('');
+            document.getElementById("next-btn").disabled = true;
+        }
+
+        function checkAnswer(button, answer) {
+            document.querySelectorAll('#options button').forEach(btn => btn.classList.remove("selected"));
+            button.classList.add("selected");
+            document.getElementById("next-btn").disabled = false;
+            if (answer === questions[currentRound][currentQuestion].answer) {
+                rawScore += rounds[currentRound].totalMarks / questions[currentRound].length;
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            showQuestion();
+        }
+
+        function nextRound() {
+            clearInterval(timer);
+            currentRound++;
+            if (currentRound < rounds.length) {
+                startRound();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            clearInterval(timer);
+            document.getElementById("quiz-section").classList.add("d-none");
+            document.getElementById("result-section").classList.remove("d-none");
+
+            finalScore = (rawScore / 50) * 10; 
+            document.getElementById("final-score").innerText = `Your total score: ${finalScore.toFixed(1)}`;
+
+            let selectionMessage = "";
+            if (finalScore > 9.5) selectionMessage = "Congratulations! You are admitted to the Vellore campus.";
+            else if (finalScore > 7.5) selectionMessage = "Congratulations! You are admitted to the Chennai campus.";
+            else if (finalScore > 6.5) selectionMessage = "Congratulations! You are admitted to the Amravati campus.";
+            else selectionMessage = " Unfortunately, you are not admitted.";
+
+            document.getElementById("selection-result").innerText = selectionMessage;
+        }
+    </script>
+</body>
+</html>
